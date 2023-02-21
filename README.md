@@ -5,7 +5,7 @@
 
 
 
-## Author: Malwina Prater   
+## Author: Malwina Prater, Matiss Ozols
 
 
 --------------
