@@ -22,7 +22,7 @@ export SINGULARITY_CACHEDIR=$PWD/singularity
 export NXF_SINGULARITY_CACHEDIR=$PWD/singularity
 export TEMP=$PWD/tmp
 export TMP_DIR=$PWD/tmp
-echo $RUN_ID | nohup nextflow run yascp -profile sanger -c inputs.nf --nf_ci_loc $PWD -resume > nextflow.nohup.log 2>&1 & 
+echo $RUN_ID | nohup nextflow run MultiOme -profile sanger -c inputs.nf --nf_ci_loc $PWD -resume > nextflow.nohup.log 2>&1 & 
 
 # get process PID 
 sleep 1 && export PID=$(pgrep -f "\\-\\-nf_ci_loc $RUN_DIR")
