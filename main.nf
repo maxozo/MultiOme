@@ -34,13 +34,13 @@ nextflow.enable.dsl = 2
 */
 
 // include { TEST } from './workflows/test'
-include {test_mo519} from './workflows/test_mo519'
+include {MULTIOME} from './workflows/multiome'
 
 //
 // WORKFLOW: Run main nf-core/test analysis pipeline
 //
 workflow {
-    test_mo519()
+    MULTIOME()
 }
 
 /*
