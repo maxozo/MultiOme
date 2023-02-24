@@ -41,10 +41,20 @@ RUN conda install qualimap
 RUN conda install -c bioconda bwa
 RUN conda init
 RUN pip install mgatk
-COPY cellranger-arc-2.0.2 ${HOME}/cellranger-arc-2.0.2
-RUN ls ${HOME}/
-RUN ln -s ${HOME}/cellranger-arc-2.0.2/cellranger-arc /usr/bin/cellranger-arc
-RUN which cellranger-arc
+RUN pip install pandas argparse debugpy
+# COPY cellranger-arc-2.0.2 ${HOME}/cellranger-arc-2.0.2
+# RUN ls ${HOME}/
+# RUN ln -s ${HOME}/cellranger-arc-2.0.2/cellranger-arc /usr/bin/cellranger-arc
+# RUN which cellranger-arc
 
 RUN echo "conda activate py2" >> ~/.bashrc
+RUN echo '24 feb build' > ${HOME}/test.tmp
 SHELL ["/bin/bash", "--login", "-c"]
+COPY entrypoint.sh ${HOME}/
+RUN ls ${HOME}/
+RUN chmod +x "${HOME}/entrypoint.sh"
+# ENTRYPOINT ["/home/container_user/entrypoint.sh"]
+RUN mv /etc/bash.bashrc /etc/bash.bashrc_old
+RUN cp /home/container_user/.bashrc /etc/bash.bashrc
+CMD ["/bin/bash", "-c","bash","/home/container_user/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "-c","bash","/home/container_user/entrypoint.sh"]

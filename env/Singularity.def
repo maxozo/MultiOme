@@ -1,0 +1,8 @@
+Bootstrap: docker-daemon
+From: multiome_24_02_2023:latest
+%environment
+    source /home/container_user/.bashrc
+%runscript
+   source /home/container_user/.bashrc
+%startscript
+    source /home/container_user/.bashrc
