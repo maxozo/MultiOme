@@ -33,9 +33,11 @@ Dataset = pd.read_csv(input_file)
 
 # 10x arc dataset should be in the folowing format:
 # fastqs,sample,library_type
-
-ARC_FILE = Dataset[['fastqs','sample','library_type']]
-ARC_FILE['library_type'][ARC_FILE['library_type']=='rna']='Gene Expression'
-ARC_FILE['library_type'][ARC_FILE['library_type']=='atac']='Chromatin Accessibility'
-ARC_FILE.to_csv('arc_input.csv',index=False)
+for unique_sample in set(Dataset['sample']):
+    print(unique_sample)
+    Dataset2 = Dataset[Dataset['sample']==unique_sample]
+    ARC_FILE = Dataset2[['fastqs','sample','library_type']]
+    ARC_FILE['library_type'][ARC_FILE['library_type']=='rna']='Gene Expression'
+    ARC_FILE['library_type'][ARC_FILE['library_type']=='atac']='Chromatin Accessibility'
+    ARC_FILE.to_csv(f'{unique_sample}___arc_input.csv',index=False)
 print('Done')

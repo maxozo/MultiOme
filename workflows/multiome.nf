@@ -13,6 +13,7 @@ workflow MULTIOME {
         .set { count_lib_csv }
     // .into { crlib_ch; cragg_ch; fqc_ch; fqs_ch }
     PREPERE_ARC_FILE(params.inputsheet)
-    CELLRANGER_ARC(PREPERE_ARC_FILE.out.arc_input)
+    // PREPERE_ARC_FILE.out.arc_input.flatten().view()
+    CELLRANGER_ARC(PREPERE_ARC_FILE.out.arc_input.flatten())
     // count_lib_csv.view()
 }
