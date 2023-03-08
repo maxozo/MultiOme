@@ -16,12 +16,13 @@ process CELLRANGER_ARC {
     script:
         mem="${task.memory}".replaceAll(' GB','')
         sample = "${libcsv}".split("___")[0]
-        if ("${sample}"=="Sample1"){
+        if ("${sample}"=="Sample2"){
             peaks = " --peaks /lustre/scratch123/hgi/projects/huvec/scripts/run/required_files/test_peaks.bed"
         }else{
             peaks = "" 
         }
-
+        peaks = " --peaks /lustre/scratch123/hgi/projects/huvec/scripts/run/required_files/test_peaks.bed"
+        
         """
            ${params.cellranger_arc_path}/cellranger-arc count \
                 --id=${sample} \
