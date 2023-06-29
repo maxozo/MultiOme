@@ -1,0 +1,10 @@
+name: container_user
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.9
+  - qualimap
+  - datrie

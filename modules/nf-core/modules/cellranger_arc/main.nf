@@ -2,11 +2,16 @@ process CELLRANGER_ARC {
     tag "${samplename}"
     label 'process_medium'
     publishDir "${params.outdir}/cellranger_arc", mode: "${params.copy_mode}", overwrite: true
+
+
     if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-        container "/software/hgi/containers/multiome_24_02_2023.img"
+        container "https://yascp.cog.sanger.ac.uk/public/multiome/multiome_24_02_2023.img"
+        //// container "/lustre/scratch123/hgi/projects/ukbb_scrna/pipelines/singularity_images/nf_qc_cluster_2.4.img"
+        
     } else {
-        container "/software/hgi/containers/multiome_24_02_2023.img"
+        container "wtsihgi/nf_scrna_qc:6bb6af5"
     }
+
     output:
         tuple val(sample), path("${sample}__Cellranger"), emit:arc_outputs
 
